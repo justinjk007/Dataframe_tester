@@ -7,7 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Get compilation database if available
 
 # Dataframe config config
 find_package(DataFrame REQUIRED)
-include_directories( ${DataFrame_INCLUDE_DIRS} )
+include_directories( ${DataFrame_INCLUDE_DIRS} ) # Cmake find me header files
 
-# add_executable(dataframe_tester dataframe_tester.cc)
-add_executable(vectors_tester vectors_tester.cc)
+add_executable(dataframe_tester dataframe_tester.cc)
+target_link_libraries(dataframe_tester DataFrame::DataFrame) # Cmake link me libraries

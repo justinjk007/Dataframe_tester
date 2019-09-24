@@ -2,7 +2,9 @@
 
 These files aim to test https://github.com/hosseinmoein/DataFrame
 
+Build instructions for DataFrame
 #+begin_src sh
+# cd to DataFrame repo
 mkdir build
 cd build
 # To use with Visual Studio 2017 and build for 64-bit
@@ -10,6 +12,18 @@ cmake .. -G "Visual Studio 15 2017 Win64"
 # To use with Visual Studio 2019 and build for 64-bit
 cmake .. -G "Visual Studio 16 2019" -A x64
 cmake --build . --config "Release"
-# This needs administrive privileges, will move the binaries to C:/Program Files (x86)/DataFrame/lib
-cmake --build . --config "Release" --target INSTALL 
 #+end_src
+
+For windows add DataFrame/build to =PATH=, restart system for windows
+to apply new =PATH=. Now DataFrame can be used.
+
+In CMake find DataFrame with
+#+begin_src sh
+find_package(DataFrame REQUIRED)
+include_directories( ${DataFrame_INCLUDE_DIRS} )
+
+# Link to DataFrame with
+target_link_libraries(dataframe_tester DataFrame::DataFrame)
+#+end_src
+
+Checkout the [[./CMakeLists.txt]] for full example.
